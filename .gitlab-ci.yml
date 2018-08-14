@@ -1,0 +1,17 @@
+before_script:
+  - npm install
+
+stages:
+  - local-test
+  
+Lint Run:
+  image: node:8.9
+  stage: local-test
+  script:
+    - npm run ci:lint
+
+Unit Test Run:
+  image: node:8.9
+  stage: local-test
+  script:
+    - npm run ci:test
