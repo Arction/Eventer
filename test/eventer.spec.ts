@@ -19,7 +19,7 @@ describe('Eventer', () => {
         notEqual(eventer1.id, eventer2.id)
     })
     describe('Token', () => {
-        let eventer: Eventer | undefined = undefined
+        let eventer: Eventer | undefined
 
         beforeEach(() =>
             eventer = new Eventer()
@@ -29,27 +29,27 @@ describe('Eventer', () => {
         )
 
         it('Listeners must have unique token at the same Eventer at same topic', () => {
-            const listener1 = eventer!.on("someTopic", emptyFun)
-            const listener2 = eventer!.on("someTopic", emptyFun)
+            const listener1 = eventer!.on('someTopic', emptyFun)
+            const listener2 = eventer!.on('someTopic', emptyFun)
 
             notEqual(listener1.token, listener2.token)
         })
         it('Listeners must have unique token at the same Eventer, but different topics', () => {
-            const listener1 = eventer!.on("someTopic1", emptyFun)
-            const listener2 = eventer!.on("someTopic2", emptyFun)
+            const listener1 = eventer!.on('someTopic1', emptyFun)
+            const listener2 = eventer!.on('someTopic2', emptyFun)
 
             notEqual(listener1.token, listener2.token)
         })
         it('Listeners must have unique tokens at different Eventers', () => {
-            const listener1 = (new Eventer()).on("someTopic1", emptyFun)
-            const listener2 = eventer!.on("someTopic2", emptyFun)
+            const listener1 = (new Eventer()).on('someTopic1', emptyFun)
+            const listener2 = eventer!.on('someTopic2', emptyFun)
 
             notEqual(listener1.token, listener2.token)
         })
     })
     describe('has()', () => {
-        let eventer: Eventer | undefined = undefined
-        let func: Function | undefined = undefined
+        let eventer: Eventer | undefined
+        let func: () => void | undefined
 
         beforeEach(() => {
             eventer = new Eventer()
@@ -90,7 +90,7 @@ describe('Eventer', () => {
             check((eventer!.has(Token(0, 0)) instanceof EventError))
         })
         it('incorrect topic', () => {
-            check(<any>(eventer!.has(Token(0, 0), "sometopic")) instanceof EventError)
+            check(<any>(eventer!.has(Token(0, 0), 'sometopic')) instanceof EventError)
         })
         it('correct topic, incorrect token', () => {
             const topic = 'sometopic'
@@ -100,8 +100,8 @@ describe('Eventer', () => {
     })
 
     describe('remove', () => {
-        let eventer: Eventer | undefined = undefined
-        let token: any = undefined
+        let eventer: Eventer | undefined
+        let token: any
 
         const topic = 'sometopic'
 
@@ -155,147 +155,131 @@ describe('Eventer', () => {
             eventer!.allOff()
             check((eventer!.has(token, topic)) instanceof EventError)
         })
-        describe('listeners()', () => {
-            let eventer: Eventer | undefined = undefined
-            let token1: any = undefined
-            let token2: any = undefined
+    })
+    describe('listeners()', () => {
+        let eventer: Eventer | undefined
+        let token1: any
+        let token2: any
 
-            const func1 = emptyFun
-            const func2 = emptyFun
+        const func1 = emptyFun
+        const func2 = emptyFun
+        const topic = 'sometopic'
+
+        beforeEach(() => {
+            eventer = new Eventer()
+            token1 = eventer.on(topic, func1)
+            token2 = eventer.on(topic, func2)
+
+        })
+        afterEach(() => {
+            eventer = undefined
+            token1 = undefined
+            token2 = undefined
+        })
+
+        it('single listeners at topic', () => {
+            const func = emptyFun
+            const newTopic = 'new' + topic
+            const token = eventer!.on(newTopic, func)
+            const listeners = eventer!.listeners(newTopic)
+
+            equal(listeners.size, 1)
+            equal(func, listeners.get(token))
+        })
+
+        it('multiple listeners at topic', () => {
+            const listeners = eventer!.listeners(topic)
+
+            equal(listeners.size, 2)
+
+            equal(func1, listeners!.get(token1))
+            equal(func2, listeners.get(token2))
+        })
+
+        it('multiple listeners at topic, with multiple avaible topics', () => {
+            const token = eventer!.on('new' + topic, emptyFun)
+            const listeners = eventer!.listeners(topic)
+
+            equal(listeners.size, 2)
+
+            equal(func1, listeners.get(token1))
+            equal(func2, listeners.get(token2))
+        })
+    })
+    describe('emit()', () => {
+        let eventer: Eventer | undefined
+
+        beforeEach(() => {
+            eventer = new Eventer()
+        })
+        afterEach(() => {
+            eventer = undefined
+        })
+
+        it('single listener', () => {
+            const func = spy()
             const topic = 'sometopic'
 
-            beforeEach(() => {
-                eventer = new Eventer()
-                token1 = eventer.on(topic, func1)
-                token2 = eventer.on(topic, func2)
+            eventer!.on(topic, func)
+            eventer!.emit(topic)
 
-            })
-            afterEach(() => {
-                eventer = undefined
-                token1 = undefined
-                token2 = undefined
-            })
-
-            it('single listeners at topic', () => {
-                const func = emptyFun
-                const newTopic = 'new' + topic
-                const token = eventer!.on(newTopic, func)
-                const listeners = eventer!.listeners(newTopic)
-
-                equal(listeners.size, 1)
-                equal(func, listeners.get(token))
-            })
-
-            it('multiple listeners at topic', () => {
-                const listeners = eventer!.listeners(topic)
-
-                equal(listeners.size, 2)
-
-                equal(func1, listeners!.get(token1))
-                equal(func2, listeners.get(token2))
-            })
-
-            it('multiple listeners at topic, with multiple avaible topics', () => {
-                const token = eventer!.on('new' + topic, emptyFun)
-                const listeners = eventer!.listeners(topic)
-
-                equal(listeners.size, 2)
-
-                equal(func1, listeners.get(token1))
-                equal(func2, listeners.get(token2))
-            })
+            calledOnce(func)
         })
-        describe('emit()', () => {
-            let eventer: Eventer | undefined = undefined
+        it('single listener called multiple times', () => {
+            const func = spy()
+            const topic = 'sometopic'
 
-            beforeEach(() => {
-                eventer = new Eventer()
-            })
-            afterEach(() => {
-                eventer = undefined
-            })
+            eventer!.on(topic, func)
+            eventer!.emit(topic)
+            eventer!.emit(topic)
 
-            it('single listener', () => {
-                const func = spy()
-                const topic = "sometopic"
+            calledTwice(func)
+        })
+        it('single listener called with arguments', () => {
+            const func = spy()
+            const topic = 'sometopic'
 
-                eventer!.on(topic, func)
-                eventer!.emit(topic)
+            const args = [1, 2, 3]
+            eventer!.on(topic, func)
+            eventer!.emit(topic, args)
 
-                calledOnce(func)
-            })
-            it('single listener called multiple times', () => {
-                const func = spy()
-                const topic = "sometopic"
+            calledOnce(func)
+            calledWithExactly(func, args)
+        })
+        it('multiple listeners at single topic', () => {
+            const func1 = spy()
+            const func2 = spy()
+            const topic = 'sometopic'
 
-                eventer!.on(topic, func)
-                eventer!.emit(topic)
-                eventer!.emit(topic)
+            eventer!.on(topic, func1)
+            eventer!.on(topic, func2)
+            eventer!.emit(topic)
 
-                calledTwice(func)
-            })
-            it('single listener called with arguments', () => {
-                const func = spy()
-                const topic = "sometopic"
+            calledOnce(func1)
+            calledOnce(func2)
+        })
+        it('multiple listeners at multiple topics', () => {
+            const func1 = spy()
+            const func2 = spy()
+            const topic1 = 'sometopic1'
+            const topic2 = 'sometopic2'
 
-                const args = [1, 2, 3]
-                eventer!.on(topic, func)
-                eventer!.emit(topic, args)
+            eventer!.on(topic1, func1)
+            eventer!.on(topic2, func2)
+            eventer!.emit(topic1)
 
-                calledOnce(func)
-                calledWithExactly(func, args)
-            })
-            it('multiple listeners at single topic', () => {
-                const func1 = spy()
-                const func2 = spy()
-                const topic = "sometopic"
+            calledOnce(func1)
+            notCalled(func2)
+        })
+        it('remove listener is not colled', () => {
+            const func = spy()
+            const topic = 'sometopic'
+            const token = eventer!.on(topic, func)
 
-                eventer!.on(topic, func1)
-                eventer!.on(topic, func2)
-                eventer!.emit(topic)
+            eventer!.off(token)
+            eventer!.emit(topic)
 
-                calledOnce(func1)
-                calledOnce(func2)
-            })
-            it('multiple listeners at multiple topics', () => {
-                const func1 = spy()
-                const func2 = spy()
-                const topic1 = "sometopic1"
-                const topic2 = "sometopic2"
-
-                eventer!.on(topic1, func1)
-                eventer!.on(topic2, func2)
-                eventer!.emit(topic1)
-
-                calledOnce(func1)
-                notCalled(func2)
-            })
-            it('remove listener is not colled', () => {
-                const func = spy()
-                const topic = "sometopic"
-                const token = eventer!.on(topic, func)
-
-                eventer!.off(token)
-                eventer!.emit(topic)
-
-                notCalled(func)
-            })
+            notCalled(func)
         })
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
