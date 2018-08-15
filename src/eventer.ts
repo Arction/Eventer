@@ -54,7 +54,7 @@ export default class Eventer {
      * @param listener  Event listener
      * @param oldToken  Ole token, if it has to be reused
      */
-    protected on(topic: string, listener: Listener, oldToken?: Token): Token {
+    on(topic: string, listener: Listener, oldToken?: Token): Token {
         const listeners = this.topics.get(topic)
         // use old token or create uniqe one
         const token = oldToken ? oldToken : Token(this.id, ++this.lastEventIndex)
@@ -72,7 +72,7 @@ export default class Eventer {
      * @param topic Topic which has to contain the listener
      * @return      Error with message or Listener
      */
-    protected has(token: Token, topic?: string): EventError | Listener {
+    has(token: Token, topic?: string): EventError | Listener {
         //if topic is specified
         if (topic) {
             // request all listeners subscribed to the topic
@@ -108,7 +108,7 @@ export default class Eventer {
      * @param topic Topic which has to contain the listener
      * @return      True if the listener is successfully removed and false if it is not found
      */
-    protected off(token: Token, topic?: string) {
+    off(token: Token, topic?: string) {
         //if topic is specified
         if (topic) {
             // request all listeners subscribed to the topic
@@ -141,7 +141,7 @@ export default class Eventer {
      * @param topic Topic name
      * @return      True if the topic is successfully removed and false if it is not found
      */
-    protected topicOff(topic: string) {
+    topicOff(topic: string) {
         return this.topics.delete(topic)
     }
     /**
@@ -150,7 +150,7 @@ export default class Eventer {
      * @param   args  Array of arguments
      * @return        Number of listeners called
      */
-    protected emit(topic: string, ...args: Array<any>): number {
+    emit(topic: string, ...args: Array<any>): number {
         // request all listeners subscribed to the topic
         const listeners = this.topics.get(topic)
         let numberOfListeners = 0
@@ -168,7 +168,7 @@ export default class Eventer {
      * Get All listeners at the topic
      * @param topic Topic name
      */
-    protected listeners(topic: string) {
+    listeners(topic: string) {
         const listeners = this.topics.get(topic)
         if (listeners)
             return listeners
