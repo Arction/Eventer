@@ -1,23 +1,24 @@
-// { notEqual, equal, check, expect, include, mockConsoleLog }  = require '../testTools'
-// {
-//     assert: {
-//         calledOnce,
-//             calledTwice,
-//             calledWithExactly,
-//             notCalled
-//     },
-//     spy
-// } = require 'sinon'
-// { EventError } = include '/internal/errors'
-// log = mockConsoleLog()
-// { Scale, Vec2, Token } = include '/common/factories'
-// [Eventer] = include '/internal/eventer'
+import { notEqual, equal, check } from './tools'
+import {
+    assert,
+    spy
+} from 'sinon'
+import Eventer, { Token, EventError } from './../src/eventer'
+const {
+    calledOnce,
+    calledTwice,
+    calledWithExactly,
+    notCalled
+} = assert
 
-// describe 'Eventer', ->
-//     it 'Eventers must have unique id', ->
-//         eventer1 = new Eventer()
-// eventer2 = new Eventer()
-// check eventer1.id != eventer2.id
+describe('Eventer', () => {
+    it('Eventers must have unique id', () => {
+        const eventer1 = new Eventer()
+        const eventer2 = new Eventer()
+        check(eventer1.id != eventer2.id)
+    })
+})
+
 
 // describe 'Token', ->
 //     eventer = undefined
