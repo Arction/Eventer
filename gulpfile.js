@@ -2,6 +2,12 @@
 const gulp = require('gulp')
 const mocha = require('gulp-mocha')
 const tslint = require('gulp-tslint')
+const tsBuiltProject = require('gulp-typescript').createProject(
+    'tsconfig.json',
+    {
+        "module": "commonjs",
+    }
+)
 const watch = (paths, tasks) => () => gulp.watch(paths, tasks)
 const allFiles = ['src/**/*.ts', 'test/**/*.ts']
 /**
@@ -38,4 +44,8 @@ gulp
  */
 gulp
     .task('ci:watch', ['test', 'lint'], watch(allFiles, ['test', 'lint']))
-
+    .task('build', _ =>
+        gulp.src('src/*.ts')
+            .pipe(tsBuiltProject())
+            .pipe(gulp.dest('dist/'))
+    )

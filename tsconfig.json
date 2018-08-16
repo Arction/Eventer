@@ -1,6 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "declaration": true,
         "target": "es5",
         "sourceMap": true,
         "forceConsistentCasingInFileNames": true,
@@ -9,6 +10,7 @@
         "experimentalDecorators": true,
         "strict": true,
         "strictFunctionTypes": false,
+        "outDir": "dist",
         "baseUrl": "src",
         "downlevelIteration": true,
         "moduleResolution": "node",

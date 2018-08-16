@@ -49,15 +49,13 @@ describe('Eventer', () => {
     })
     describe('has()', () => {
         let eventer: Eventer | undefined
-        let func: () => void | undefined
+        const func = emptyFun
 
         beforeEach(() => {
             eventer = new Eventer()
-            func = emptyFun
         })
         afterEach(() => {
             eventer = undefined
-            func = undefined
         })
 
         it('single event existence', () => {
