@@ -10,7 +10,7 @@
     "ci:test": "gulp test",
     "ci:lint": "gulp lint",
     "build": "gulp build",
-    "tsc": "tsc"
+    "prepack": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -35,9 +35,7 @@
     "mocha": "^5.2.0",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
-    "typescript": "^2.9.2"
-  },
-  "dependencies": {
+    "typescript": "^2.9.2",
     "@types/sinon": "^5.0.1",
     "sinon": "^6.1.5"
   }

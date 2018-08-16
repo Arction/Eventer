@@ -1,0 +1,8 @@
+node_modules
+src
+test
+.gitignore
+gulpfile.js
+tsconfig.json
+tslint.json
+.gitlab-ci.yml
