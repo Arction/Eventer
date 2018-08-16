@@ -2,7 +2,8 @@
   "name": "eventer",
   "version": "1.0.0",
   "description": "Simple and fast event emitter",
-  "main": "index.js",
+  "main": "dist/eventer.js",
+  "types": "dist/eventer.d.ts",
   "scripts": {
     "test": "gulp test:watch",
     "lint": "gulp lint:watch",
