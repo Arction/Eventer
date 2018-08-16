@@ -10,7 +10,7 @@
     "ci:test": "gulp test",
     "ci:lint": "gulp lint",
     "build": "gulp build",
-    "prepack": "gulp build"
+    "prepack": "npm install && gulp build"
   },
   "repository": {
     "type": "git",
