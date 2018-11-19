@@ -1,7 +1,11 @@
+/**
+ * Eventer error message, add 'EventError:' prefix to error message
+ */
 export class EventError extends Error {
     constructor(m: string) {
         const errorMessage = `EventError: ${m}}`
         super(errorMessage)
+        // Stupid workaround for a smooth support of ES5
         Object.setPrototypeOf(this, EventError.prototype)
     }
 }
@@ -10,24 +14,33 @@ export class EventError extends Error {
  */
 export type Listener = (...args: any[]) => void
 /**
- *  TODO
+ * Subscription representation
  */
 export interface Token {
+    /**
+     * Unique token ID
+     */
     readonly token: string,
+    /**
+     * ID of Eventer issued the token
+     */
     readonly ownerIndex: number,
+    /**
+     * Internal token ID, might be collisions with another Eventer
+     */
     readonly id: number
 }
 /**
- * TODO
- * @param ownerIndex
- * @param id
+ * @param ownerIndex Index of Eventer
+ * @param id         Index of current subscription
+ * @return           Unique Token
  */
 export const Token = (ownerIndex: number, id: number): Token => ({
     token: `${ownerIndex}-${id}`,
     ownerIndex,
     id
 })
-// Every eventer has to have unique id
+// Every eventer has to have unique id across an app
 let lastId = 0
 /**
  * Creates Error for non-existing event listener
@@ -44,9 +57,21 @@ const notExistReport = (token: Token, id: number) =>
  * @property  id  Unique Eventer id
  */
 export default class Eventer {
+    /**
+     * Unique id
+     */
     readonly id = ++lastId
+    /**
+     * Index of last issued token
+     */
     private lastEventIndex = 0
+    /**
+     * Collection of topics
+     */
     private readonly topics: Map<string, Map<Token, Listener>> = new Map()
+    /**
+     * 
+     */
     constructor() { }
     /**
      * Register sunbsription on the topic with provided listener
