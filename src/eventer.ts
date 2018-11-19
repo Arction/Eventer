@@ -70,7 +70,7 @@ export default class Eventer {
      */
     private readonly topics: Map<string, Map<Token, Listener>> = new Map()
     /**
-     * 
+     *
      */
     constructor() { }
     /**
