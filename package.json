@@ -1,7 +1,7 @@
 {
   "name": "eventer",
   "version": "1.0.0",
-  "description": "Simple and fast event emitter",
+  "description": "Simple and fast event emitter.",
   "main": "dist/eventer.js",
   "types": "dist/eventer.d.ts",
   "scripts": {
@@ -17,8 +17,12 @@
     "type": "git",
     "url": "git+ssh://git@gitlab.com/arction/Eventer.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Arction",
+  "license": "MIT",
+  "keywords": [
+    "event",
+    "emitter"
+  ],
   "bugs": {
     "url": "https://gitlab.com/arction/Eventer/issues"
   },
