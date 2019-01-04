@@ -2,6 +2,12 @@
 
 Simple and fast event emitter library. Subscription is based on unique Token, which can be used to unsubscribe from topic.
 
+## Installation
+
+`npm install --save eventer`
+
+## Getting started
+
 ``` TypeScript
 const eventer = new Eventer()
 
@@ -42,7 +48,7 @@ eventer.emit('topic2')
 // nothing happened, since all subscriptions were terminated
 ```
 
-# Development instructions
+## Development instructions
 
 The project is developed on TypeScript. Build system of the project heavily rely on Node.js. Dependencies are managed by *npm*, therefore, remember to run **npm install** before starting of anything else. 
 
