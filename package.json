@@ -33,6 +33,9 @@
     "README.md",
     "package.json"
   ],
+  "publishConfig": {
+    "tag": "beta"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.4",
