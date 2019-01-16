@@ -4,11 +4,13 @@ Simple and fast event emitter library. Subscription is based on unique Token, wh
 
 ## Installation
 
-`npm install --save eventer`
+`npm install --save @arction/eventer`
 
 ## Getting started
 
 ``` TypeScript
+import Eventer from '@arction/eventer'
+
 const eventer = new Eventer()
 
 // new topic is created, handler is added as the first subscriber to the topic
