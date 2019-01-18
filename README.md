@@ -8,7 +8,7 @@ Simple and fast event emitter library. Subscription is based on unique Token, wh
 
 ## Getting started
 
-```TypeScript
+```ts
 import { Eventer } from '@arction/eventer'
 
 const eventer = new Eventer()
