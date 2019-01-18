@@ -8,8 +8,8 @@ Simple and fast event emitter library. Subscription is based on unique Token, wh
 
 ## Getting started
 
-``` TypeScript
-import Eventer from '@arction/eventer'
+```TypeScript
+import { Eventer } from '@arction/eventer'
 
 const eventer = new Eventer()
 
@@ -62,8 +62,9 @@ There are several *npm scripts*, which are used in development process:
 | lint     | npm run lint     | run static analyzer and watch
 | ci:test  | npm run ci:test  | run tests once
 | ci:lint  | npm run ci:lint  | run static analyzer once
-| ci       | npm run ci       | run static analyzer as well as tests
 | ci:watch | npm run ci:watch | run CI circle and watch
+| build    | npm run build    | run build system
+| docs     | npm run docs     | generate typedoc documentation
 
 ## Contributors Guidelines
 
