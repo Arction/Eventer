@@ -10,7 +10,6 @@
         "experimentalDecorators": true,
         "strict": true,
         "strictFunctionTypes": false,
-        "outDir": "dist",
         "baseUrl": "src",
         "downlevelIteration": true,
         "moduleResolution": "node",
@@ -24,6 +23,10 @@
     "exclude": [
         "node_modules",
         "typings/globals",
-        "typings/modules"
+        "typings/modules",
+        "test",
+        "dist",
+        "dev",
+        "docs"
     ]
 }

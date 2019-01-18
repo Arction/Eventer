@@ -56,7 +56,7 @@ const notExistReport = (token: Token, id: number) =>
  * Sub class can use them for implementation of event dispaching
  * @property  id  Unique Eventer id
  */
-export default class Eventer {
+export class Eventer {
     /**
      * Unique id
      */
