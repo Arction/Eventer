@@ -158,7 +158,7 @@ export default class Eventer {
      * Remove all topics with all listeners
      */
     allOff() {
-        this.topics.clear();
+        this.topics.clear()
         return this
     }
     /**

@@ -2,6 +2,7 @@
 const gulp = require('gulp')
 const mocha = require('gulp-mocha')
 const tslint = require('gulp-tslint')
+const typedoc = require('gulp-typedoc')
 const tsBuiltProject = require('gulp-typescript').createProject(
     'tsconfig.json',
     {
@@ -49,3 +50,22 @@ gulp
             .pipe(tsBuiltProject())
             .pipe(gulp.dest('dist/'))
     )
+/**
+ * TypeDoc Tasks
+ */
+gulp
+    .task('docs', _ => {
+        gulp.src(['src/**/*.ts'])
+            .pipe(typedoc({
+                module: 'commonjs',
+                target: 'ES5',
+                excludeProtected: true,
+                excludePrivate: true,
+                excludeExternals: true,
+                out: 'docs/v0.0.0',
+                mode: 'file',
+                tsConfig: 'tsconfig.json',
+                name: 'Eventer API Documentation',
+                hideGenerator: true
+            }))
+    })

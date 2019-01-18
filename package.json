@@ -11,7 +11,8 @@
     "ci:test": "gulp test",
     "ci:lint": "gulp lint",
     "build": "gulp build",
-    "prepack": "npm install && gulp build"
+    "prepack": "npm install && gulp build",
+    "docs": "gulp docs"
   },
   "repository": {
     "type": "git",
@@ -46,11 +47,13 @@
     "gulp-mocha": "^6.0.0",
     "gulp-sequence": "^1.0.0",
     "gulp-tslint": "^8.1.3",
+    "gulp-typedoc": "^2.2.1",
     "gulp-typescript": "^5.0.0-alpha.3",
     "mocha": "^5.2.0",
     "sinon": "^6.1.5",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
+    "typedoc": "^0.14.2",
     "typescript": "^2.9.2"
   }
 }
