@@ -37,7 +37,8 @@
             "static-before-instance"
         ],
         "max-classes-per-file": [
-            false
+            false,
+            1
         ],
         "no-arg": true,
         "no-bitwise": false,
@@ -79,7 +80,10 @@
             "single"
         ],
         "radix": true,
-        "semicolon": false,
+        "semicolon": [
+            true,
+            "never"
+        ],
         "triple-equals": [
             true,
             "allow-null-check"

@@ -2,7 +2,15 @@
 
 Simple and fast event emitter library. Subscription is based on unique Token, which can be used to unsubscribe from topic.
 
-``` TypeScript
+## Installation
+
+`npm install --save @arction/eventer`
+
+## Getting started
+
+```ts
+import { Eventer } from '@arction/eventer'
+
 const eventer = new Eventer()
 
 // new topic is created, handler is added as the first subscriber to the topic
@@ -42,7 +50,7 @@ eventer.emit('topic2')
 // nothing happened, since all subscriptions were terminated
 ```
 
-# Development instructions
+## Development instructions
 
 The project is developed on TypeScript. Build system of the project heavily rely on Node.js. Dependencies are managed by *npm*, therefore, remember to run **npm install** before starting of anything else. 
 
@@ -54,8 +62,9 @@ There are several *npm scripts*, which are used in development process:
 | lint     | npm run lint     | run static analyzer and watch
 | ci:test  | npm run ci:test  | run tests once
 | ci:lint  | npm run ci:lint  | run static analyzer once
-| ci       | npm run ci       | run static analyzer as well as tests
 | ci:watch | npm run ci:watch | run CI circle and watch
+| build    | npm run build    | run build system
+| docs     | npm run docs     | generate typedoc documentation
 
 ## Contributors Guidelines
 

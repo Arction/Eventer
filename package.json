@@ -1,8 +1,10 @@
 {
-  "name": "eventer",
+  "name": "@arction/eventer",
   "version": "1.0.0",
   "description": "Simple and fast event emitter.",
   "main": "dist/eventer.js",
+  "module": "dist/eventer.es.js",
+  "iife": "dist/eventer.iife.js",
   "types": "dist/eventer.d.ts",
   "scripts": {
     "test": "gulp test:watch",
@@ -11,7 +13,8 @@
     "ci:test": "gulp test",
     "ci:lint": "gulp lint",
     "build": "gulp build",
-    "prepack": "npm install && gulp build"
+    "prepack": "npm install && gulp build",
+    "docs": "gulp docs"
   },
   "repository": {
     "type": "git",
@@ -27,21 +30,36 @@
     "url": "https://gitlab.com/arction/Eventer/issues"
   },
   "homepage": "https://gitlab.com/arction/Eventer#README",
+  "files": [
+    "dist/**/*",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "publishConfig": {
+    "tag": "beta"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.4",
     "@types/node": "^8.0.26",
+    "@types/sinon": "^5.0.1",
     "chai": "^4.1.2",
     "gulp": "^3.9.1",
     "gulp-mocha": "^6.0.0",
+    "gulp-rimraf": "^0.2.2",
     "gulp-sequence": "^1.0.0",
+    "gulp-terser": "^1.1.7",
     "gulp-tslint": "^8.1.3",
-    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-typedoc": "^2.2.1",
     "mocha": "^5.2.0",
+    "rollup": "^1.1.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.19.2",
+    "sinon": "^6.1.5",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
-    "typescript": "^2.9.2",
-    "@types/sinon": "^5.0.1",
-    "sinon": "^6.1.5"
+    "typedoc": "^0.14.2",
+    "typescript": "^2.9.2"
   }
 }

@@ -56,7 +56,7 @@ const notExistReport = (token: Token, id: number) =>
  * Sub class can use them for implementation of event dispaching
  * @property  id  Unique Eventer id
  */
-export default class Eventer {
+export class Eventer {
     /**
      * Unique id
      */
@@ -158,7 +158,7 @@ export default class Eventer {
      * Remove all topics with all listeners
      */
     allOff() {
-        this.topics.clear();
+        this.topics.clear()
         return this
     }
     /**
