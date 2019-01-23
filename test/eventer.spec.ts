@@ -3,7 +3,7 @@ import {
     assert,
     spy
 } from 'sinon'
-import Eventer, { Token, EventError } from './../src/eventer'
+import { Eventer, Token, EventError } from './../src/eventer'
 const {
     calledOnce,
     calledTwice,
