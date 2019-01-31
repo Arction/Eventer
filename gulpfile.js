@@ -49,6 +49,10 @@ gulp
     .task('clean', () => gulp.src(['dist'])
         .pipe(clean())
     )
+/**
+ * Build
+ */
+gulp
     .task('build:rollup', () => {
         return rollup.rollup({
             input: 'src/eventer.ts',

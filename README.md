@@ -1,6 +1,6 @@
 # Eventer
 
-Simple and fast event emitter library. Subscription is based on unique Token, which can be used to unsubscribe from topic.
+Simple and fast event emitter library. Subscription is based on a unique Token, which can be used to unsubscribe from the topic.
 
 ## Installation
 
@@ -52,9 +52,9 @@ eventer.emit('topic2')
 
 ## Development instructions
 
-The project is developed on TypeScript. Build system of the project heavily rely on Node.js. Dependencies are managed by *npm*, therefore, remember to run **npm install** before starting of anything else. 
+The project is developed using TypeScript. Build system of the project heavily relies on Node.js. Dependencies are managed with *npm*, therefore, remember to run **npm install** before starting of anything else. 
 
-There are several *npm scripts*, which are used in development process:
+There are several *npm scripts*, which are used for development process:
 
 | Name     | Command          | Description              |
 | ---------|------------------|--------------------------|
@@ -70,6 +70,6 @@ There are several *npm scripts*, which are used in development process:
 
 It is not permitted to do direct commit to master except, small fixes for broken master CI. Each feature has to implemented in a separate branch. Each merge request has to be checked by one of team members to satisfy code standards and fit to existing architecture.
 
-All Classes, Types, Interfaces and function(except getters and setters) have to be commented in according with TypeDoc guidelines, before stories there they belong are marked as complete.
+All Classes, Types, Interfaces and functions(except getters and setters) have to be commented in according to TypeDoc guidelines.
 
-"Clean" code has to be written in according to with the best practices for high-performance JavaScript. The code has to be as simple and as DRY as possible, it should not contain any unnecessary sophisticated constructions. Side effects have to be reduced.
+"Clean" code has to be written in according to with the best practices for high-performance JavaScript and TypeScript. The code has to be as simple and as DRY as possible, it should not contain any unnecessary sophisticated constructions. Side effects have to be reduced.

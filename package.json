@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+ssh://git@gitlab.com/arction/Eventer.git"
   },
-  "author": "Arction",
+  "author": "Arction Ltd.",
   "license": "MIT",
   "keywords": [
     "event",

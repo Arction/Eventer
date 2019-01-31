@@ -1,5 +1,5 @@
 /**
- * Eventer error message, add 'EventError:' prefix to error message
+ * Eventer error message, adds 'EventError:' prefix to error message
  */
 export class EventError extends Error {
     constructor(m: string) {
@@ -26,7 +26,7 @@ export interface Token {
      */
     readonly ownerIndex: number,
     /**
-     * Internal token ID, might be collisions with another Eventer
+     * Internal token ID, might be in collision with another Eventer instance
      */
     readonly id: number
 }
@@ -43,17 +43,17 @@ export const Token = (ownerIndex: number, id: number): Token => ({
 // Every eventer has to have unique id across an app
 let lastId = 0
 /**
- * Creates Error for non-existing event listener
- * The Error message is used in multiple occasions
+ * Creates Error for non-existing event listener.
+ * The Error message is used in multiple occasions.
  * @param token Token of non-existing event
  * @param id    Eventer id
  */
 const notExistReport = (token: Token, id: number) =>
     new EventError(`Event listener with ${token.token} id does not exist at Eventer with ${id} id.`)
 /**
- * Pub/Sub for internal event scheduling
- * All functions are for protected usage
- * Sub class can use them for implementation of event dispaching
+ * Pub/Sub for internal event scheduling.
+ * All functions are for protected usage.
+ * Sub class can use them for implementation of event dispaching.
  * @property  id  Unique Eventer id
  */
 export class Eventer {
@@ -74,14 +74,14 @@ export class Eventer {
      */
     constructor() { }
     /**
-     * Register sunbsription on the topic with provided listener
+     * Register subscription on the topic with provided listener
      * @param topic     Topic name
      * @param listener  Event listener
-     * @param oldToken  Ole token, if it has to be reused
+     * @param oldToken  Old token, if it has to be reused
      */
     on(topic: string, listener: Listener, oldToken?: Token): Token {
         const listeners = this.topics.get(topic)
-        // use old token or create uniqe one
+        // use old token or create unique one
         const token = oldToken ? oldToken : Token(this.id, ++this.lastEventIndex)
         if (listeners)
             //add listener to the topic
@@ -92,7 +92,7 @@ export class Eventer {
         return token
     }
     /**
-     * Check if listener with porvided token exists
+     * Check if listener with provided token exists
      * @param token Token of desired listener
      * @param topic Topic which has to contain the listener
      * @return      Error with message or Listener
@@ -115,7 +115,7 @@ export class Eventer {
                 // return error if topic is empty
                 return new EventError(`Eventer with ${token.ownerIndex} does not have ${topic}.`)
         } else {
-            //itarate over all topics
+            //iterate over all topics
             for (const [_, listeners] of this.topics) {
                 //check if it has listener with desired token
                 const listener = listeners.get(token)
@@ -170,7 +170,7 @@ export class Eventer {
         return this.topics.delete(topic)
     }
     /**
-     * Emit event and calls subscribed listeners
+     * Emit event and call subscribed listeners
      * @param   topic Topic name
      * @param   args  Array of arguments
      * @return        Number of listeners called
