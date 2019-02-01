@@ -13,7 +13,7 @@
     "ci:test": "gulp test",
     "ci:lint": "gulp lint",
     "build": "gulp build",
-    "prepare": "npm install && gulp build",
+    "prepare": "gulp build",
     "docs": "gulp docs"
   },
   "repository": {
