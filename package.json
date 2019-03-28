@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/arction/Eventer.git"
+    "url": "git+ssh://git@gitlab.com/lcjs/arction/Eventer.git"
   },
   "author": "Arction Ltd.",
   "license": "MIT",
@@ -27,9 +27,9 @@
     "emitter"
   ],
   "bugs": {
-    "url": "https://gitlab.com/arction/Eventer/issues"
+    "url": "https://gitlab.com/arction/lcjs/Eventer/issues"
   },
-  "homepage": "https://gitlab.com/arction/Eventer#README",
+  "homepage": "https://gitlab.com/arction/lcjs/Eventer#README",
   "files": [
     "dist/**/*",
     "LICENSE",
