@@ -2,6 +2,8 @@
 
 Simple and fast event emitter library. Subscription is based on a unique Token, which can be used to unsubscribe from the topic.
 
+The Eventer is used in LightningChart<sup>&#174;</sup> JS charting library. [https://www.arction.com/](https://www.arction.com/)
+
 ## Installation
 
 `npm install --save @arction/eventer`
@@ -99,13 +101,6 @@ eventer.on('topic2', ( arg1, arg2 ) => console.log( arg1, arg2 ))
 
 eventer.emit('topic2', 'Hello ', 'World')
 ```
-
-## Project structure
-
-| Folder | Description |
-|--------|-------------|
-| src    | project source code |
-| test   | unit tests  |
 
 ## Development instructions
 
