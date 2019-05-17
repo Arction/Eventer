@@ -50,6 +50,63 @@ eventer.emit('topic2')
 // nothing happened, since all subscriptions were terminated
 ```
 
+### Subscribe to topic
+
+Subscribing to a topic is easy.
+
+```ts
+eventer.on('topic', ()=>{ console.log('Topic handler') })
+```
+
+Multiple subscriptions to a single topic can exist.
+
+```ts
+eventer.on('topic', ()=>{ console.log('Topic handler') })
+eventer.on('topic2', ()=>{ console.log('Topic 2 handler') })
+eventer.on('topic3', ()=>{ console.log('Topic 3 handler') })
+```
+
+### Unsubscribe from topic
+
+You can unsubscribe from a single topic by using the *Token* returned by eventer when you subscribed to the topic.
+
+```ts
+const token = eventer.on('topic', ()=>{ console.log('Topic handler') })
+
+eventer.off(token)
+```
+
+You can also unsubscibe all listeners from a topic.
+
+```ts
+eventer.topicOff('topic')
+```
+
+It is also possible to unsubscribe all topics and all listeners.
+
+```ts
+eventer.allOff()
+```
+
+### Emiting events
+
+Events can be emitted for a topic. The emit can contain 0 or more arguments that will be provided to the topic listeners.
+
+```ts
+eventer.emit('topic')
+
+eventer.on('topic2', ( arg1, arg2 ) => console.log( arg1, arg2 ))
+
+eventer.emit('topic2', 'Hello ', 'World')
+```
+
+## Project structure
+
+| Folder | Description |
+|--------|-------------|
+| src    | project source code |
+| test   | unit tests  |
+
 ## Development instructions
 
 The project is developed using TypeScript. Build system of the project heavily relies on Node.js. Dependencies are managed with *npm*, therefore, remember to run **npm install** before starting of anything else. 
@@ -58,18 +115,10 @@ There are several *npm scripts*, which are used for development process:
 
 | Name     | Command          | Description              |
 | ---------|------------------|--------------------------|
+| build    | npm run build    | run build system
 | test     | npm test         | run tests and watch      |
 | lint     | npm run lint     | run static analyzer and watch
+| docs     | npm run docs     | generate typedoc documentation
 | ci:test  | npm run ci:test  | run tests once
 | ci:lint  | npm run ci:lint  | run static analyzer once
 | ci:watch | npm run ci:watch | run CI circle and watch
-| build    | npm run build    | run build system
-| docs     | npm run docs     | generate typedoc documentation
-
-## Contributors Guidelines
-
-It is not permitted to do direct commit to master except, small fixes for broken master CI. Each feature has to implemented in a separate branch. Each merge request has to be checked by one of team members to satisfy code standards and fit to existing architecture.
-
-All Classes, Types, Interfaces and functions(except getters and setters) have to be commented in according to TypeDoc guidelines.
-
-"Clean" code has to be written in according to with the best practices for high-performance JavaScript and TypeScript. The code has to be as simple and as DRY as possible, it should not contain any unnecessary sophisticated constructions. Side effects have to be reduced.
