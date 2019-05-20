@@ -80,7 +80,7 @@ function docs() {
         excludeProtected: true,
         excludePrivate: true,
         excludeExternals: true,
-        out: 'docs/v0.0.0',
+        out: 'docs',
         mode: 'file',
         tsConfig: 'tsconfig.json',
         name: 'Eventer API Documentation',
