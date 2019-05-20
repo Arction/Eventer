@@ -1,0 +1,278 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Eventer API Documentation</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Eventer API Documentation</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> Eventer API Documentation</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="eventer">Eventer</h1>
+				<p>Simple and fast event emitter library. Subscription is based on a unique Token, which can be used to unsubscribe from the topic.</p>
+				<p>The Eventer is used in LightningChart<sup>&#174;</sup> JS charting library. <a href="https://www.arction.com/">https://www.arction.com/</a></p>
+				<h2 id="installation">Installation</h2>
+				<p><code>npm install --save @arction/eventer</code></p>
+				<h2 id="getting-started">Getting started</h2>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Eventer } <span class="hljs-keyword">from</span> <span class="hljs-string">'@arction/eventer'</span>
+
+<span class="hljs-keyword">const</span> eventer = <span class="hljs-keyword">new</span> Eventer()
+
+<span class="hljs-comment">// new topic is created, handler is added as the first subscriber to the topic</span>
+<span class="hljs-keyword">const</span> token1 = eventer.on(<span class="hljs-string">'topic1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am called from topic1'</span>))
+<span class="hljs-comment">// 'topic1' already exists, so new listener is simply added to existing collection of handlers</span>
+<span class="hljs-keyword">const</span> token2 = eventer.on(<span class="hljs-string">'topic1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am also called from topic1'</span>))
+<span class="hljs-comment">// new collection of handlers is created for the second topic</span>
+<span class="hljs-comment">// the function is added to it</span>
+eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am called from topic2'</span>))
+
+eventer.emit(<span class="hljs-string">'topic1'</span>)
+<span class="hljs-comment">// calls two functions which listen to the event</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// outputs:</span>
+<span class="hljs-comment">//    I am called from topic1</span>
+<span class="hljs-comment">//    I am also called from topic1</span>
+
+eventer.emit(<span class="hljs-string">'topic2'</span>)
+<span class="hljs-comment">// calls single functions which listen to the event</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// outputs:</span>
+<span class="hljs-comment">//    I am called from topic2</span>
+
+<span class="hljs-comment">// remove the second listener from the first topic by token </span>
+eventer.off(token2)
+
+eventer.emit(<span class="hljs-string">'topic1'</span>)
+<span class="hljs-comment">// calls single functions which listen to the event</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// outputs:</span>
+<span class="hljs-comment">//    I am called from topic1</span>
+
+<span class="hljs-comment">// remove all listeners from all topics</span>
+eventer.allOff()
+
+eventer.emit(<span class="hljs-string">'topic2'</span>)
+<span class="hljs-comment">// nothing happened, since all subscriptions were terminated</span></code></pre>
+				<h3 id="subscribe-to-topic">Subscribe to topic</h3>
+				<p>Subscribing to a topic is easy.</p>
+				<pre><code class="language-ts">eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })</code></pre>
+				<p>Multiple subscriptions to a single topic can exist.</p>
+				<pre><code class="language-ts">eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })
+eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic 2 handler'</span>) })
+eventer.on(<span class="hljs-string">'topic3'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic 3 handler'</span>) })</code></pre>
+				<h3 id="unsubscribe-from-topic">Unsubscribe from topic</h3>
+				<p>You can unsubscribe from a single topic by using the <em>Token</em> returned by eventer when you subscribed to the topic.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> token = eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })
+
+eventer.off(token)</code></pre>
+				<p>You can also unsubscibe all listeners from a topic.</p>
+				<pre><code class="language-ts">eventer.topicOff(<span class="hljs-string">'topic'</span>)</code></pre>
+				<p>It is also possible to unsubscribe all topics and all listeners.</p>
+				<pre><code class="language-ts">eventer.allOff()</code></pre>
+				<h3 id="emiting-events">Emiting events</h3>
+				<p>Events can be emitted for a topic. The emit can contain 0 or more arguments that will be provided to the topic listeners.</p>
+				<pre><code class="language-ts">eventer.emit(<span class="hljs-string">'topic'</span>)
+
+eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function">(<span class="hljs-params"> arg1, arg2 </span>) =&gt;</span> <span class="hljs-built_in">console</span>.log( arg1, arg2 ))
+
+eventer.emit(<span class="hljs-string">'topic2'</span>, <span class="hljs-string">'Hello '</span>, <span class="hljs-string">'World'</span>)</code></pre>
+				<h2 id="development-instructions">Development instructions</h2>
+				<p>The project is developed using TypeScript. Build system of the project heavily relies on Node.js. Dependencies are managed with <em>npm</em>, therefore, remember to run <strong>npm install</strong> before starting of anything else. </p>
+				<p>There are several <em>npm scripts</em>, which are used for development process:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Command</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>build</td>
+							<td>npm run build</td>
+							<td>run build system</td>
+						</tr>
+						<tr>
+							<td>test</td>
+							<td>npm test</td>
+							<td>run tests and watch</td>
+						</tr>
+						<tr>
+							<td>lint</td>
+							<td>npm run lint</td>
+							<td>run static analyzer and watch</td>
+						</tr>
+						<tr>
+							<td>docs</td>
+							<td>npm run docs</td>
+							<td>generate typedoc documentation</td>
+						</tr>
+						<tr>
+							<td>ci:test</td>
+							<td>npm run ci:test</td>
+							<td>run tests once</td>
+						</tr>
+						<tr>
+							<td>ci:lint</td>
+							<td>npm run ci:lint</td>
+							<td>run static analyzer once</td>
+						</tr>
+						<tr>
+							<td>ci:watch</td>
+							<td>npm run ci:watch</td>
+							<td>run CI circle and watch</td>
+						</tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/eventerror.html" class="tsd-kind-icon">Event<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/eventer.html" class="tsd-kind-icon">Eventer</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#listener" class="tsd-kind-icon">Listener</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#lastid" class="tsd-kind-icon">last<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#token" class="tsd-kind-icon">Token</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#notexistreport" class="tsd-kind-icon">not<wbr>Exist<wbr>Report</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

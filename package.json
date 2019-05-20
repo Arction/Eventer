@@ -14,7 +14,8 @@
     "ci:lint": "gulp lint",
     "build": "gulp build",
     "prepack": "npm install && gulp build",
-    "docs": "gulp docs"
+    "docs": "gulp docs",
+    "version": "gulp docs"
   },
   "repository": {
     "type": "git",
