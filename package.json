@@ -2,43 +2,39 @@
   "name": "@arction/eventer",
   "version": "1.0.0",
   "description": "Simple and fast event emitter.",
-  "main": "dist/eventer.js",
-  "module": "dist/eventer.es.js",
-  "iife": "dist/eventer.iife.js",
-  "types": "dist/eventer.d.ts",
-  "scripts": {
-    "test": "gulp testWatch",
-    "lint": "gulp lintWatch",
-    "ci:watch": "gulp ciWatch",
-    "ci:test": "gulp test",
-    "ci:lint": "gulp lint",
-    "build": "gulp build",
-    "prepack": "npm install && gulp build",
-    "docs": "gulp docs",
-    "version": "gulp docs"
+  "keywords": [
+    "emitter",
+    "event"
+  ],
+  "homepage": "https://gitlab.com/arction/lcjs/Eventer#README",
+  "bugs": {
+    "url": "https://gitlab.com/arction/lcjs/Eventer/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/lcjs/arction/Eventer.git"
   },
-  "author": "Arction Ltd.",
   "license": "MIT",
-  "keywords": [
-    "event",
-    "emitter"
-  ],
-  "bugs": {
-    "url": "https://gitlab.com/arction/lcjs/Eventer/issues"
-  },
-  "homepage": "https://gitlab.com/arction/lcjs/Eventer#README",
+  "author": "Arction Ltd.",
   "files": [
     "dist/**/*",
     "LICENSE",
     "README.md",
     "package.json"
   ],
-  "publishConfig": {
-    "tag": "beta"
+  "main": "dist/eventer.js",
+  "module": "dist/eventer.es.js",
+  "types": "dist/eventer.d.ts",
+  "scripts": {
+    "build": "gulp build",
+    "ci:lint": "gulp lint",
+    "ci:test": "gulp test",
+    "ci:watch": "gulp ciWatch",
+    "docs": "gulp docs",
+    "lint": "gulp lintWatch",
+    "prepack": "npm install && gulp build",
+    "test": "gulp testWatch",
+    "version": "gulp docs"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -61,5 +57,9 @@
     "tslint": "^5.16.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.4.5"
-  }
+  },
+  "publishConfig": {
+    "tag": "beta"
+  },
+  "iife": "dist/eventer.iife.js"
 }
