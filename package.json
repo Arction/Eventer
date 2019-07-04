@@ -1,6 +1,6 @@
 {
   "name": "@arction/eventer",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Simple and fast event emitter.",
   "keywords": [
     "emitter",
@@ -32,31 +32,31 @@
     "ci:watch": "gulp ciWatch",
     "docs": "gulp docs",
     "lint": "gulp lintWatch",
-    "prepack": "npm install && gulp build",
+    "prepare": "gulp build",
     "test": "gulp testWatch",
     "version": "gulp docs"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^12.0.2",
-    "@types/sinon": "^7.0.11",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.12",
+    "@types/sinon": "^7.0.13",
     "chai": "^4.2.0",
-    "del": "^4.1.1",
+    "del": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-mocha": "^6.0.0",
-    "gulp-terser": "^1.1.7",
+    "gulp-terser": "^1.2.0",
     "gulp-tslint": "^8.1.4",
     "gulp-typedoc": "^2.2.2",
     "mocha": "^6.1.4",
-    "rollup": "^1.12.1",
+    "rollup": "^1.16.4",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.21.0",
+    "rollup-plugin-typescript2": "^0.21.2",
     "sinon": "^7.3.2",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
     "typedoc": "^0.14.2",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.2"
   },
   "publishConfig": {
     "tag": "beta"
