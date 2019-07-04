@@ -6,13 +6,13 @@
     "emitter",
     "event"
   ],
-  "homepage": "https://gitlab.com/arction/lcjs/Eventer#README",
+  "homepage": "https://github.com/Arction/Eventer#README",
   "bugs": {
-    "url": "https://gitlab.com/arction/lcjs/Eventer/issues"
+    "url": "https://github.com/Arction/Eventer/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/lcjs/arction/Eventer.git"
+    "url": "git@github.com:Arction/Eventer.git"
   },
   "license": "MIT",
   "author": "Arction Ltd.",
