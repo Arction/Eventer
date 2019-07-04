@@ -10,7 +10,7 @@ The Eventer is used in LightningChart<sup>&#174;</sup> JS charting library. [htt
 
 ## Documentation
 
-Online documentation is available at [arction.github.io/eventer](https://arction.github.io/eventer/)
+Online documentation is available at [arction.github.io/eventer](https://arction.github.io/Eventer/)
 
 ## Getting started
 
