@@ -1,6 +1,6 @@
 {
   "name": "@arction/eventer",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Simple and fast event emitter.",
   "keywords": [
     "emitter",
