@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.0.12",
+    "@types/node": "^12.6.9",
     "@types/sinon": "^7.0.13",
     "chai": "^4.2.0",
     "del": "^5.0.0",
@@ -48,15 +48,15 @@
     "gulp-terser": "^1.2.0",
     "gulp-tslint": "^8.1.4",
     "gulp-typedoc": "^2.2.2",
-    "mocha": "^6.1.4",
-    "rollup": "^1.16.4",
+    "mocha": "^6.2.0",
+    "rollup": "^1.18.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.21.2",
-    "sinon": "^7.3.2",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "sinon": "^7.4.0",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
-    "typedoc": "^0.14.2",
-    "typescript": "^3.5.2"
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3"
   },
   "publishConfig": {
     "tag": "beta"
