@@ -62,14 +62,22 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="eventer">Eventer</h1>
+				<a href="#eventer" id="eventer" style="color: inherit; text-decoration: none;">
+					<h1>Eventer</h1>
+				</a>
 				<p>Simple and fast event emitter library. Subscription is based on a unique Token, which can be used to unsubscribe from the topic.</p>
 				<p>The Eventer is used in LightningChart<sup>&#174;</sup> JS charting library. <a href="https://www.arction.com/">https://www.arction.com/</a></p>
-				<h2 id="installation">Installation</h2>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
 				<p><code>npm install --save @arction/eventer</code></p>
-				<h2 id="documentation">Documentation</h2>
-				<p>Online documentation is available at <a href="https://arction.github.io/eventer">arction.github.io/eventer</a></p>
-				<h2 id="getting-started">Getting started</h2>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>Online documentation is available at <a href="https://arction.github.io/Eventer/">arction.github.io/eventer</a></p>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
+				</a>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Eventer } <span class="hljs-keyword">from</span> <span class="hljs-string">'@arction/eventer'</span>
 
 <span class="hljs-keyword">const</span> eventer = <span class="hljs-keyword">new</span> Eventer()
@@ -109,14 +117,18 @@ eventer.allOff()
 
 eventer.emit(<span class="hljs-string">'topic2'</span>)
 <span class="hljs-comment">// nothing happened, since all subscriptions were terminated</span></code></pre>
-				<h3 id="subscribe-to-topic">Subscribe to topic</h3>
+				<a href="#subscribe-to-topic" id="subscribe-to-topic" style="color: inherit; text-decoration: none;">
+					<h3>Subscribe to topic</h3>
+				</a>
 				<p>Subscribing to a topic is easy.</p>
 				<pre><code class="language-ts">eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })</code></pre>
 				<p>Multiple subscriptions to a single topic can exist.</p>
 				<pre><code class="language-ts">eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })
 eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic 2 handler'</span>) })
 eventer.on(<span class="hljs-string">'topic3'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic 3 handler'</span>) })</code></pre>
-				<h3 id="unsubscribe-from-topic">Unsubscribe from topic</h3>
+				<a href="#unsubscribe-from-topic" id="unsubscribe-from-topic" style="color: inherit; text-decoration: none;">
+					<h3>Unsubscribe from topic</h3>
+				</a>
 				<p>You can unsubscribe from a single topic by using the <em>Token</em> returned by eventer when you subscribed to the topic.</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> token = eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })
 
@@ -125,14 +137,18 @@ eventer.off(token)</code></pre>
 				<pre><code class="language-ts">eventer.topicOff(<span class="hljs-string">'topic'</span>)</code></pre>
 				<p>It is also possible to unsubscribe all topics and all listeners.</p>
 				<pre><code class="language-ts">eventer.allOff()</code></pre>
-				<h3 id="emiting-events">Emiting events</h3>
+				<a href="#emiting-events" id="emiting-events" style="color: inherit; text-decoration: none;">
+					<h3>Emiting events</h3>
+				</a>
 				<p>Events can be emitted for a topic. The emit can contain 0 or more arguments that will be provided to the topic listeners.</p>
 				<pre><code class="language-ts">eventer.emit(<span class="hljs-string">'topic'</span>)
 
 eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function">(<span class="hljs-params"> arg1, arg2 </span>) =&gt;</span> <span class="hljs-built_in">console</span>.log( arg1, arg2 ))
 
 eventer.emit(<span class="hljs-string">'topic2'</span>, <span class="hljs-string">'Hello '</span>, <span class="hljs-string">'World'</span>)</code></pre>
-				<h2 id="development-instructions">Development instructions</h2>
+				<a href="#development-instructions" id="development-instructions" style="color: inherit; text-decoration: none;">
+					<h2>Development instructions</h2>
+				</a>
 				<p>The project is developed using TypeScript. Build system of the project heavily relies on Node.js. Dependencies are managed with <em>npm</em>, therefore, remember to run <strong>npm install</strong> before starting of anything else. </p>
 				<p>There are several <em>npm scripts</em>, which are used for development process:</p>
 				<table>
@@ -197,6 +213,9 @@ eventer.emit(<span class="hljs-string">'topic2'</span>, <span class="hljs-string
 					<li class=" tsd-kind-class">
 						<a href="classes/eventer.html" class="tsd-kind-icon">Eventer</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/token.html" class="tsd-kind-icon">Token</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#listener" class="tsd-kind-icon">Listener</a>
 					</li>
@@ -226,6 +245,7 @@ eventer.emit(<span class="hljs-string">'topic2'</span>, <span class="hljs-string
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
