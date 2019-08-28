@@ -20,7 +20,8 @@
     "dist/**/*",
     "LICENSE",
     "README.md",
-    "package.json"
+    "package.json",
+    "CHANGELOG.md"
   ],
   "main": "dist/eventer.js",
   "module": "dist/eventer.es.js",
