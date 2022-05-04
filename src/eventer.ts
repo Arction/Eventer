@@ -180,13 +180,15 @@ export class Eventer {
         const listeners = this.topics.get(topic)
         let numberOfListeners = 0
         // if listerens exist
-        if (listeners)
+        if (listeners){
+            const copyListener = new Map([...listeners])
             // iterate over
-            listeners.forEach((listener) => {
+            copyListener.forEach((listener) => {
                 // call listener
                 listener(...args)
                 numberOfListeners++
             })
+        }
         return numberOfListeners
     }
     /**
