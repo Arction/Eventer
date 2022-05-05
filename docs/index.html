@@ -78,26 +78,26 @@
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h2>Getting started</h2>
 				</a>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Eventer } <span class="hljs-keyword">from</span> <span class="hljs-string">'@arction/eventer'</span>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Eventer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@arction/eventer&#x27;</span>
 
 <span class="hljs-keyword">const</span> eventer = <span class="hljs-keyword">new</span> Eventer()
 
 <span class="hljs-comment">// new topic is created, handler is added as the first subscriber to the topic</span>
-<span class="hljs-keyword">const</span> token1 = eventer.on(<span class="hljs-string">'topic1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am called from topic1'</span>))
-<span class="hljs-comment">// 'topic1' already exists, so new listener is simply added to existing collection of handlers</span>
-<span class="hljs-keyword">const</span> token2 = eventer.on(<span class="hljs-string">'topic1'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am also called from topic1'</span>))
+<span class="hljs-keyword">const</span> token1 = eventer.on(<span class="hljs-string">&#x27;topic1&#x27;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;I am called from topic1&#x27;</span>))
+<span class="hljs-comment">// &#x27;topic1&#x27; already exists, so new listener is simply added to existing collection of handlers</span>
+<span class="hljs-keyword">const</span> token2 = eventer.on(<span class="hljs-string">&#x27;topic1&#x27;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;I am also called from topic1&#x27;</span>))
 <span class="hljs-comment">// new collection of handlers is created for the second topic</span>
 <span class="hljs-comment">// the function is added to it</span>
-eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'I am called from topic2'</span>))
+eventer.on(<span class="hljs-string">&#x27;topic2&#x27;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;I am called from topic2&#x27;</span>))
 
-eventer.emit(<span class="hljs-string">'topic1'</span>)
+eventer.emit(<span class="hljs-string">&#x27;topic1&#x27;</span>)
 <span class="hljs-comment">// calls two functions which listen to the event</span>
 <span class="hljs-comment">//</span>
 <span class="hljs-comment">// outputs:</span>
 <span class="hljs-comment">//    I am called from topic1</span>
 <span class="hljs-comment">//    I am also called from topic1</span>
 
-eventer.emit(<span class="hljs-string">'topic2'</span>)
+eventer.emit(<span class="hljs-string">&#x27;topic2&#x27;</span>)
 <span class="hljs-comment">// calls single functions which listen to the event</span>
 <span class="hljs-comment">//</span>
 <span class="hljs-comment">// outputs:</span>
@@ -106,7 +106,7 @@ eventer.emit(<span class="hljs-string">'topic2'</span>)
 <span class="hljs-comment">// remove the second listener from the first topic by token </span>
 eventer.off(token2)
 
-eventer.emit(<span class="hljs-string">'topic1'</span>)
+eventer.emit(<span class="hljs-string">&#x27;topic1&#x27;</span>)
 <span class="hljs-comment">// calls single functions which listen to the event</span>
 <span class="hljs-comment">//</span>
 <span class="hljs-comment">// outputs:</span>
@@ -115,37 +115,44 @@ eventer.emit(<span class="hljs-string">'topic1'</span>)
 <span class="hljs-comment">// remove all listeners from all topics</span>
 eventer.allOff()
 
-eventer.emit(<span class="hljs-string">'topic2'</span>)
-<span class="hljs-comment">// nothing happened, since all subscriptions were terminated</span></code></pre>
+eventer.emit(<span class="hljs-string">&#x27;topic2&#x27;</span>)
+<span class="hljs-comment">// nothing happened, since all subscriptions were terminated</span>
+</code></pre>
 				<a href="#subscribe-to-topic" id="subscribe-to-topic" style="color: inherit; text-decoration: none;">
 					<h3>Subscribe to topic</h3>
 				</a>
 				<p>Subscribing to a topic is easy.</p>
-				<pre><code class="language-ts">eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })</code></pre>
+				<pre><code class="language-ts">eventer.on(<span class="hljs-string">&#x27;topic&#x27;</span>, <span class="hljs-function">()=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Topic handler&#x27;</span>) })
+</code></pre>
 				<p>Multiple subscriptions to a single topic can exist.</p>
-				<pre><code class="language-ts">eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })
-eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic 2 handler'</span>) })
-eventer.on(<span class="hljs-string">'topic3'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic 3 handler'</span>) })</code></pre>
+				<pre><code class="language-ts">eventer.on(<span class="hljs-string">&#x27;topic&#x27;</span>, <span class="hljs-function">()=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Topic handler&#x27;</span>) })
+eventer.on(<span class="hljs-string">&#x27;topic2&#x27;</span>, <span class="hljs-function">()=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Topic 2 handler&#x27;</span>) })
+eventer.on(<span class="hljs-string">&#x27;topic3&#x27;</span>, <span class="hljs-function">()=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Topic 3 handler&#x27;</span>) })
+</code></pre>
 				<a href="#unsubscribe-from-topic" id="unsubscribe-from-topic" style="color: inherit; text-decoration: none;">
 					<h3>Unsubscribe from topic</h3>
 				</a>
 				<p>You can unsubscribe from a single topic by using the <em>Token</em> returned by eventer when you subscribed to the topic.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">const</span> token = eventer.on(<span class="hljs-string">'topic'</span>, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Topic handler'</span>) })
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> token = eventer.on(<span class="hljs-string">&#x27;topic&#x27;</span>, <span class="hljs-function">()=&gt;</span>{ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Topic handler&#x27;</span>) })
 
-eventer.off(token)</code></pre>
+eventer.off(token)
+</code></pre>
 				<p>You can also unsubscibe all listeners from a topic.</p>
-				<pre><code class="language-ts">eventer.topicOff(<span class="hljs-string">'topic'</span>)</code></pre>
+				<pre><code class="language-ts">eventer.topicOff(<span class="hljs-string">&#x27;topic&#x27;</span>)
+</code></pre>
 				<p>It is also possible to unsubscribe all topics and all listeners.</p>
-				<pre><code class="language-ts">eventer.allOff()</code></pre>
+				<pre><code class="language-ts">eventer.allOff()
+</code></pre>
 				<a href="#emiting-events" id="emiting-events" style="color: inherit; text-decoration: none;">
 					<h3>Emiting events</h3>
 				</a>
 				<p>Events can be emitted for a topic. The emit can contain 0 or more arguments that will be provided to the topic listeners.</p>
-				<pre><code class="language-ts">eventer.emit(<span class="hljs-string">'topic'</span>)
+				<pre><code class="language-ts">eventer.emit(<span class="hljs-string">&#x27;topic&#x27;</span>)
 
-eventer.on(<span class="hljs-string">'topic2'</span>, <span class="hljs-function">(<span class="hljs-params"> arg1, arg2 </span>) =&gt;</span> <span class="hljs-built_in">console</span>.log( arg1, arg2 ))
+eventer.on(<span class="hljs-string">&#x27;topic2&#x27;</span>, <span class="hljs-function">(<span class="hljs-params"> arg1, arg2 </span>) =&gt;</span> <span class="hljs-built_in">console</span>.log( arg1, arg2 ))
 
-eventer.emit(<span class="hljs-string">'topic2'</span>, <span class="hljs-string">'Hello '</span>, <span class="hljs-string">'World'</span>)</code></pre>
+eventer.emit(<span class="hljs-string">&#x27;topic2&#x27;</span>, <span class="hljs-string">&#x27;Hello &#x27;</span>, <span class="hljs-string">&#x27;World&#x27;</span>)
+</code></pre>
 				<a href="#development-instructions" id="development-instructions" style="color: inherit; text-decoration: none;">
 					<h2>Development instructions</h2>
 				</a>
@@ -256,6 +263,5 @@ eventer.emit(<span class="hljs-string">'topic2'</span>, <span class="hljs-string
 </footer>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
