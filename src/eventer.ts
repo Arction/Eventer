@@ -181,9 +181,10 @@ export class Eventer {
         let numberOfListeners = 0
         // if listerens exist
         if (listeners){
-            const copyListener = new Map([...listeners])
+            // copy listeners to prevent triggering
+            const copiedListeners = new Map([...listeners])
             // iterate over
-            copyListener.forEach((listener) => {
+            copiedListeners.forEach((listener) => {
                 // call listener
                 listener(...args)
                 numberOfListeners++
