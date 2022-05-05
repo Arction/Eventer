@@ -182,7 +182,7 @@ export class Eventer {
         // if listerens exist
         if (listeners){
             // copy listeners to prevent triggering
-            const copiedListeners = new Map([...listeners])
+            const copiedListeners = new Map(listeners)
             // iterate over
             copiedListeners.forEach((listener) => {
                 // call listener
