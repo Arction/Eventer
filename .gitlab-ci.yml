@@ -5,7 +5,7 @@ stages:
   - local-test
   
 Lint Run:
-  image: node:8.9
+  image: node:16.15.0
   stage: local-test
   tags:
       - docker
@@ -13,7 +13,7 @@ Lint Run:
     - npm run ci:lint
 
 Unit Test Run:
-  image: node:8.9
+  image: node:16.15.0
   stage: local-test
   tags:
       - docker
