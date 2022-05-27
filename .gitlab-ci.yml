@@ -7,11 +7,15 @@ stages:
 Lint Run:
   image: node:8.9
   stage: local-test
+  tags:
+      - docker
   script:
     - npm run ci:lint
 
 Unit Test Run:
   image: node:8.9
   stage: local-test
+  tags:
+      - docker
   script:
     - npm run ci:test
