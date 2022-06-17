@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fixed event listener being called immediately when a new listener was attached to topic during event emitting for same topic.
+    - This could have easily resulted in an infinite loop being created as new listeners are added to be processed last in the listener order.
+
 ### Security
 
 ## [1.0.1] - 2019-08-05

@@ -1,4 +1,4 @@
-import { notEqual, equal, check } from './tools'
+import { notEqual, equal, check, expect } from './tools'
 import {
     assert,
     spy
@@ -278,6 +278,24 @@ describe('Eventer', () => {
             eventer!.emit(topic)
 
             notCalled(func)
+        })
+        it('no recursion if listener is added during emit', () => {
+          const firstCallback = spy(() => {
+            eventer?.on('test', secondCallback)
+          })
+          const secondCallback = spy()
+
+          eventer?.on('test', firstCallback)
+          eventer?.emit('test')
+
+          expect(firstCallback.callCount).equal(
+            1,
+            'First callback should be called once'
+          )
+          expect(secondCallback.callCount).equal(
+            0,
+            'Second callback should not be called, because it was added during event emit'
+          )
         })
     })
 })
